@@ -113,8 +113,8 @@ public class DataMunger {
 	 */
 	
 	public String getConditionsPartQuery(String queryString) {
-
-		return null;
+		String queryStringNew = queryString.substring(queryString.indexOf("where ")+6, queryString.length());
+		return queryStringNew.toLowerCase();
 	}
 
 	/*
@@ -133,8 +133,34 @@ public class DataMunger {
 	 */
 
 	public String[] getConditions(String queryString) {
-
-		return null;
+		String queryStringTest = queryString.substring(queryString.lastIndexOf(" ")+1);
+		if (queryString.contains("group") && queryString.contains("where")==true) {
+			String queryStringNew = queryString.substring(queryString.indexOf("where ") + 6, queryString.indexOf(" group"));
+			String queryStringOne[] = queryStringNew.toLowerCase().split(" and | or ");
+			return queryStringOne;
+		} else if (queryString.contains("sort")) {
+			String queryStringNew = queryString.substring(queryString.indexOf("where ") + 6, queryString.indexOf(" sort"));
+			String queryStringOne[] = queryStringNew.toLowerCase().split(" and | or ");
+			return queryStringOne;
+		}
+		else if (queryString.contains("order")) {
+			String queryStringNew = queryString.substring(queryString.indexOf("where ") + 6, queryString.indexOf(" order"));
+			String queryStringOne[] = queryStringNew.toLowerCase().split(" and | or ");
+			return queryStringOne;
+		}
+		else if(queryStringTest.contains("csv"))
+		{
+			return null;
+		}
+		else if(queryString.contains("where") != true)
+		{
+			return null;
+		}
+		else {
+			String queryStringNew = queryString.substring(queryString.indexOf("where ") + 6, queryString.length());
+			String queryStringOne[] = queryStringNew.toLowerCase().split(" and | or ");
+			return queryStringOne;
+		}
 	}
 
 	/*
