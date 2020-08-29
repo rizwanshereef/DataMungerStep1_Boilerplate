@@ -90,7 +90,16 @@ public class DataMunger {
 	
 	public String[] getFields(String queryString) {
 
-		return null;
+		String queryStringNew = queryString.substring(queryString.indexOf("select")+7,queryString.indexOf(" from"));
+		if(queryStringNew.contains("*"))
+		{
+			String queryStringTwo[] = queryStringNew.split(" ");
+			return queryStringTwo;
+		}
+		else {
+			String queryStringThree[] = queryStringNew.split(",");
+			return queryStringThree;
+		}
 	}
 
 	/*
