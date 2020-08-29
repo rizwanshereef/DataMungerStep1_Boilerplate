@@ -35,7 +35,10 @@ public class DataMunger {
 
 	public String[] getSplitStrings(String queryString) {
 
-		return null;
+		String queryString_new = queryString.toLowerCase();
+		String arr[] = queryString_new.split(" ");
+
+		return arr;
 	}
 
 	/*
@@ -47,8 +50,8 @@ public class DataMunger {
 	 */
 
 	public String getFileName(String queryString) {
-
-		return null;
+		String arr = queryString.substring(queryString.indexOf("from")+5, queryString.indexOf("csv")+3);
+		return arr;
 	}
 
 	/*
@@ -63,7 +66,8 @@ public class DataMunger {
 	
 	public String getBaseQuery(String queryString) {
 
-		return null;
+
+		return (queryString.substring(0,queryString.indexOf(" where")));
 	}
 
 	/*
