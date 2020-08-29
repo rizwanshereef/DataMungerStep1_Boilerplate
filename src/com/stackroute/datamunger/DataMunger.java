@@ -65,9 +65,15 @@ public class DataMunger {
 	 */
 	
 	public String getBaseQuery(String queryString) {
+		if(queryString.contains("where"))
+		{
+			String queryStringNew = queryString.substring(0,queryString.indexOf(" where"));
+			return queryStringNew;
+		}
+		else{
+			return queryString;
+		}
 
-
-		return (queryString.substring(0,queryString.indexOf(" where")));
 	}
 
 	/*
