@@ -198,8 +198,13 @@ public class DataMunger {
 	 */
 
 	public String[] getOrderByFields(String queryString) {
-
-		return null;
+		if(queryString.contains("order by")) {
+			String queryStringNew= queryString.substring(queryString.indexOf("order by")+9,queryString.length());
+			String queryStringNewOne[]= queryStringNew.split(" ");
+			return queryStringNewOne;
+		}
+		else
+			return null;
 	}
 
 	/*
