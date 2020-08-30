@@ -26,6 +26,8 @@ package com.stackroute.datamunger;
  * the test cases together.
  */
 
+import java.util.Arrays;
+
 public class DataMunger {
 
 	/*
@@ -65,8 +67,7 @@ public class DataMunger {
 	 */
 	
 	public String getBaseQuery(String queryString) {
-		if(queryString.contains("where"))
-		{
+		if(queryString.contains("where")) {
 			String queryStringNew = queryString.substring(0,queryString.indexOf(" where"));
 			return queryStringNew;
 		}
@@ -91,8 +92,7 @@ public class DataMunger {
 	public String[] getFields(String queryString) {
 
 		String queryStringNew = queryString.substring(queryString.indexOf("select")+7,queryString.indexOf(" from"));
-		if(queryStringNew.contains("*"))
-		{
+		if(queryStringNew.contains("*")) {
 			String queryStringTwo[] = queryStringNew.split(" ");
 			return queryStringTwo;
 		}
@@ -148,12 +148,10 @@ public class DataMunger {
 			String queryStringOne[] = queryStringNew.toLowerCase().split(" and | or ");
 			return queryStringOne;
 		}
-		else if(queryStringTest.contains("csv"))
-		{
+		else if(queryStringTest.contains("csv")) {
 			return null;
 		}
-		else if(queryString.contains("where") != true)
-		{
+		else if(queryString.contains("where") != true) {
 			return null;
 		}
 		else {
@@ -176,7 +174,19 @@ public class DataMunger {
 
 	public String[] getLogicalOperators(String queryString) {
 
-		return null;
+		if (queryString.contains(" or ") && queryString.contains(" and ") != true) {
+			String queryStringNew[] = {"or"};
+			return queryStringNew;
+		} else if (queryString.contains(" and ") && queryString.contains(" or ") != true) {
+			String queryStringNew[] = {"and"};
+			return queryStringNew;
+		} else if (queryString.contains(" and ") && queryString.contains(" or ")) {
+			String queryStringNew[] = {"and", "or"};
+			return queryStringNew;
+		}
+		else
+			return null;
+
 	}
 
 	/*
