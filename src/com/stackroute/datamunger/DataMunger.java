@@ -217,8 +217,14 @@ public class DataMunger {
 	 */
 
 	public String[] getGroupByFields(String queryString) {
+		if(queryString.contains("group by")) {
+			String queryStringNew= queryString.substring(queryString.indexOf("group by")+9,queryString.length());
+			String queryStringNewOne[]= queryStringNew.split(" ");
+			return queryStringNewOne;
+		}
+		else
+			return null;
 
-		return null;
 	}
 
 	/*
